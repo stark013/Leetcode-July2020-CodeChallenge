@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int min(int x , int y , int z){
+        return x < y ? (x < z ? x : z) : (y < z ? y : z);
+    }
+    int nthUglyNumber(int n) 
+    {
+        int i2 = 0 , i3 = 0 , i5 = 0;
+    
+        int ugly[n];
+        ugly[0] = 1;
+    
+        int min_mul_2 = 2;
+        int min_mul_3 = 3;
+        int min_mul_5 = 5;
+    
+        int next_ugly;
+        for(int i = 1; i < n; i++){
+            next_ugly = min(min_mul_2 , min_mul_3 , min_mul_5);
+        
+            ugly[i] = next_ugly;
+        
+            if(next_ugly == min_mul_2){
+                i2 += 1;
+                min_mul_2 = ugly[i2] * 2;
+            }
+        
+        
+            if(next_ugly == min_mul_3){
+                i3 += 1;
+                min_mul_3 = ugly[i3] * 3;
+            }
+        
+        
+            if(next_ugly == min_mul_5){
+                i5 += 1;
+                min_mul_5 = ugly[i5] * 5;
+            }
+        }
+        return ugly[n-1];
+    
+    }
+    
+};
