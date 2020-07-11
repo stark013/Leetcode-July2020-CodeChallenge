@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void formsub(vector<int> &vec , vector<vector<int>> &res , vector<int> &subset , int ind){
+        res.push_back(subset);
+        for(int i = ind; i < vec.size() ; i++){
+            subset.push_back(vec[i]);
+
+            formsub(vec , res , subset , i + 1);
+
+            subset.pop_back();
+        }
+    return;
+    }
+    
+    vector<vector<int>> subsets(vector<int>& vec) {
+        vector<vector<int>> v;
+        vector<int> subset;
+
+        int index = 0;
+        formsub(vec , v , subset , index);
+    return v;
+        
+    }
+};
